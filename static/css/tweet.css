@@ -1,0 +1,43 @@
+.list-group-naked .list-group-item {
+  background-color: transparent;
+  border: none;
+}
+
+.list-group-naked .list-group-item-action:focus,
+.list-group-naked .list-group-item-action:hover {
+  background-color: rgba(18, 102, 241, 0.1);
+  color: #1266f1;
+  border-radius: 10rem;
+}
+.list-group-naked-dark .list-group-item-action:focus,
+.list-group-naked-dark .list-group-item-action:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #424242;
+}
+
+.list-group-naked .list-group-item.active {
+  color: #1266f1;
+}
+
+.form-control.form-status:focus {
+  box-shadow: none;
+}
+
+.input-group-text {
+  border: 0;
+}
+
+.form-outline .form-control:focus ~ .form-notch .form-notch-middle {
+  border-top: 0.125rem solid;
+  border-color: #1266f1;
+}
+
+.list-group-flush {
+  border-radius: 1rem;
+}
+.list-group-flush .list-group-item {
+  background-color: #f5f8fa;
+}
+.list-group-flush .list-group-item-action:hover {
+  background-color: rgba(0, 0, 0, 0.07);
+}
