@@ -9,7 +9,7 @@
         <div class="col-md-8 card mb-4  mt-3 left  top">
             <div class="card-body">
                 <h5>{% block title %} {{ post.title }} {% endblock title %}</h5>
-                <p class="small text-muted">@{{ post.author }} | {{ post.publish | naturalday }}</p>
+                <p class="small text-muted">@{{ post.author }} <i class="bi bi-dash-lg"></i><small> {{ post.whenpublished}}</small> </p>
                 <p>{{ post.content | safe }}</p>
             </div>
         </div>
@@ -38,7 +38,7 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="col-md-8 card mb-4  mt-3 ">
+        <div class="col-md-8 card mb-3 mt-3 ">
             <div class="card-body">
                 {% if new_comment %}
                 <div class="alert alert-success" role="alert">

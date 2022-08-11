@@ -4,7 +4,7 @@ from django.utils.text import slugify
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils import timezone
 import math
-#STATUS = ((0, "Draft"), (1, "Publish"))
+#STATUS = ((0, 'Draft'), (1, 'Publish'))
 
 class PublishedManager(models.Manager):
     def get_queryset(self):
@@ -16,7 +16,7 @@ class Post(models.Model):
     )
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique_for_date='publish')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="blog_posts")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
     updated = models.DateTimeField(auto_now=True)
     content = RichTextUploadingField(blank=True, null=True)
     publish = models.DateTimeField(default=timezone.now) #
@@ -36,7 +36,7 @@ class Post(models.Model):
     def get_absolute_url(self):
         from django.urls import reverse
 
-        return reverse("post_detail", kwargs={"slug": str(self.slug)})
+        return reverse('post_detail', kwargs={'slug': str(self.slug)})
 
     def whenpublished(self):
         now = timezone.now()
@@ -71,7 +71,7 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     name = models.CharField(max_length=80)
     email = models.EmailField()
     body = models.TextField()
@@ -79,10 +79,10 @@ class Comment(models.Model):
     active = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ["-created"]
+        ordering = ['-created']
 
     def __str__(self):
-        return "Comment {} by {}".format(self.body, self.name)
+        return 'Comment {} by {}'.format(self.body, self.name)
 
 
     def whencreated(self):
@@ -114,4 +114,4 @@ class Comment(models.Model):
             if days == 1:
                 return str() + 'Yesterday'
             else:
-                return self.title
+                return 'Comment {} by {}'.format(self.body, self.name)

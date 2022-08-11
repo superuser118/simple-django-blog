@@ -6,9 +6,9 @@ from .models import Post
 
 
 class LatestPostsFeed(Feed):
-    title = "My blog"
-    link = ""
-    description = "New posts."
+    title = 'My blog'
+    link = ''
+    description = 'New posts.'
 
     def items(self):
         return Post.objects.filter(status=1)
@@ -21,7 +21,7 @@ class LatestPostsFeed(Feed):
 
     #Only needed if the model has no get_absolute_url method
     def item_link(self, item):
-        return reverse("post_detail", args=[item.slug])
+        return reverse('post_detail', args=[item.slug])
 
 
 from django.utils.feedgenerator import Atom1Feed
