@@ -1,16 +1,16 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
 {% load static %}
 {% load humanize %}
 {% load bootstrap5 %}
 {% load crispy_forms_tags %}
-
+{% block content %}
 <div class="container-lg">
     <div class="row">
         <div class="col-md-8 card mb-4  mt-3 left  top">
             <div class="card-body">
-                <h1>{% block title %} {{ post.title }} {% endblock title %}</h1>
-                <p class=" text-muted">{{ post.author }} | {{ post.created_on }}</p>
-                <p class="card-text ">{{ post.content | safe }}</p>
+                <h5>{% block title %} {{ post.title }} {% endblock title %}</h5>
+                <p class="small text-muted">@{{ post.author }} | {{ post.publish | naturalday }}</p>
+                <p>{{ post.content | safe }}</p>
             </div>
         </div>
         {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
@@ -19,7 +19,7 @@
             <div class="card-body">
                 <!-- comments -->
                 {% with comments.count as total_comments %}
-                <p class="lead">{{ total_comments }} comments</p>
+                <p class="lead">{{ total_comments }} comment{{total_comments|pluralize }}</p>
 
                 <p>
                     {% endwith %} {% for comment in comments %}
@@ -29,10 +29,10 @@
                     <p class="font-weight-bold">
                         {{ comment.name }}
                         <span class=" text-muted font-weight-normal">
-                            {{ comment.created_on }}
+                            {{ comment.whencreated }}
                         </span>
                     </p>
-                    {{ comment.body | linebreaks }}
+                    {{ comment.body  }}
                 </div>
 
                 {% endfor %}

@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
-from dotenv import load_dotenv
-load_dotenv() 
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv()) 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,9 +26,8 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = str(os.getenv('DEBUG'))
 
-ALLOWED_HOSTS = ['*','192.168.0.109:8989']
 
-
+ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
@@ -54,6 +53,7 @@ INSTALLED_APPS = [
 SITE_ID = 1
 X_FRAME_OPTIONS = "SAMEORIGIN"
 SILENCED_SYSTEM_CHECKS = ["security.W019"]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -88,12 +88,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+
 DATABASES = {
 
     'default': {
@@ -141,7 +136,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+
 CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_UPLOAD_SLUGIFY_FILENAME = False
