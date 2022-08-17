@@ -25,7 +25,7 @@
                     {% endwith %} {% for comment in comments %}
                 </p>
 
-                <div class="comments" style="padding: 10px;">
+                <div class="comments">
                     <p class="font-weight-bold">
                         {{ comment.name }}
                         <span class=" text-muted font-weight-normal">
@@ -45,8 +45,8 @@
                     Your comment is awaiting moderation
                 </div>
                 {% else %}
-                <p class="lead">Leave a comment</p>
-                <form method="post" style="margin-top: 1.3em;">
+                <p class="h6">Leave a comment</p>
+                <form method="post">
                     
                     {% csrf_token %}
                     {{ comment_form | crispy }}

@@ -4,7 +4,7 @@ from django.utils.text import slugify
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils import timezone
 import math
-#STATUS = ((0, 'Draft'), (1, 'Publish'))
+
 
 class PublishedManager(models.Manager):
     def get_queryset(self):
@@ -14,6 +14,7 @@ class Post(models.Model):
     STATUS = (
         ((0,'Draft' or 'draft')),((1,'Publish' or 'published'))
     )
+    
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique_for_date='publish')
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
@@ -62,12 +63,12 @@ class Post(models.Model):
             else:
                 return str(hours) + ' hours ago'
 
-        if diff.days >= 1 and diff.days < 2 :
+        if diff.days >= 1 and diff.days < 30 :
             days = diff.days
             if days == 1:
                 return str() + 'Yesterday'
             else:
-                return self.title
+                return str(days) +' days ago'
 
 
 class Comment(models.Model):
